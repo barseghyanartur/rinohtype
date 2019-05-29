@@ -222,7 +222,11 @@ class RinohBuilder(Builder):
 
     def write_doc(self, docname, doctree, docnames, targetname):
         config = self.config
-        suffix, = config.source_suffix
+        try:
+            suffix, = config.source_suffix
+        except ValueError:
+            suffix = [i for i in config.source_suffix.items()][0][0]
+
         source_path = os.path.join(self.srcdir, docname + suffix)
         parser = ReStructuredTextReader()
         rinoh_tree = parser.from_doctree(source_path, doctree)
@@ -241,6 +245,12 @@ class RinohBuilder(Builder):
         ensuredir(path.dirname(outfilename))
         rinoh_document.render(outfilename)
 
+    def info(self, *args, **kwargs):
+        pass
+
+    def warn(self, *args, **kwargs):
+        pass
+
 
 def template_from_config(config, confdir, warn):
     template_cfg = {}
@@ -250,7 +260,7 @@ def template_from_config(config, confdir, warn):
             template_cfg['base'] = TemplateConfigurationFile(tmpl_path)
             template_cls = template_cfg['base'].template
         else:
-           template_cls = DocumentTemplate.from_string(config.rinoh_template)
+            template_cls = DocumentTemplate.from_string(config.rinoh_template)
     elif isinstance(config.rinoh_template, TemplateConfiguration):
         template_cfg['base'] = config.rinoh_template
         template_cls = config.rinoh_template.template
@@ -291,10 +301,8 @@ def template_from_config(config, confdir, warn):
     return sphinx_config
 
 
-
 def fully_qualified_id(docname, id):
     return id if id.startswith('%') else '%' + docname + '#' + id
-
 
 
 def info_config_conversion(config_option):
