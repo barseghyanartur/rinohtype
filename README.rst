@@ -1,12 +1,12 @@
 rinohtype
 =========
 
-.. image:: http://img.shields.io/pypi/v/rinohtype.svg
-   :target: https://pypi.python.org/pypi/rinohtype
+.. image:: http://img.shields.io/pypi/v/rinohtype-reloaded.svg
+   :target: https://pypi.python.org/pypi/rinohtype-reloaded
    :alt: PyPI
 
-.. image:: https://img.shields.io/pypi/pyversions/rinohtype.svg
-   :target: https://pypi.python.org/pypi/rinohtype
+.. image:: https://img.shields.io/pypi/pyversions/rinohtype-reloaded.svg
+   :target: https://pypi.python.org/pypi/rinohtype-reloaded
    :alt: Python version
 
 .. image:: https://badges.gitter.im/brechtm/rinohtype.svg
