@@ -1,6 +1,14 @@
 Release History
 ---------------
 
+Release 0.3.3 (2019-09-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fixed:
+
+* Just a strange bug fixed to make it working while building Python docs.
+* Re-branded as ``rinohtype-reloaded``.
+
 Release 0.3.2.dev
 ~~~~~~~~~~~~~~~~~
 

@@ -25,6 +25,12 @@ rinohtype
    :target: https://codecov.io/gh/brechtm/rinohtype
    :alt: Test coverage
 
+.. note::
+
+    Re-branded as ``rinohtype-reloaded``. As soon as upstream accepts
+    pending pull requests, this repository might be archived. Re-branded PyPI
+    versions will however stay forever.
+
 Rinohtype is a document processor in the style of LaTeX_. It renders structured
 documents to PDF based on a document template and a style sheet. An important
 goal of rinohtype is to be more user-friendly than LaTeX. This includes

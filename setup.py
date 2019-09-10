@@ -21,34 +21,35 @@ def get_version():
     from datetime import date
     from subprocess import check_output, CalledProcessError, DEVNULL
 
-    VERSION = '0.3.2.dev'
+    VERSION = '0.3.3'
+    return VERSION
 
-    try:
-        is_dirty = check_output(['git', 'status', '--porcelain'],
-                                stderr=DEVNULL) != b''
-    except CalledProcessError:
-        is_dirty = None   # not running from a git checkout
-
-    if len(sys.argv) > 1 and sys.argv[1] == 'develop':
-        # 'pip install -e' or 'python setup.py develop'
-        print('Installing in develop mode')
-        version = 'dev'
-    elif VERSION.endswith('.dev'):  # development distribution
-        if is_dirty is None:
-            version = version_from_pkginfo() or VERSION
-        else:
-            print('Attempting to get commit SHA1 from git...')
-            git_sha1 = check_output(['git', 'rev-parse', '--short', 'HEAD'])
-            version = '{}+{}'.format(VERSION, git_sha1.strip().decode('ascii'))
-            if is_dirty:
-                version += '.dirty{}'.format(date.today().strftime('%Y%m%d'))
-    else:  # release distribution
-        if is_dirty is None:
-            assert version_from_pkginfo() in (VERSION, None)
-        else:
-            assert not is_dirty
-        version = VERSION
-    return version
+    # try:
+    #     is_dirty = check_output(['git', 'status', '--porcelain'],
+    #                             stderr=DEVNULL) != b''
+    # except CalledProcessError:
+    #     is_dirty = None   # not running from a git checkout
+    #
+    # if len(sys.argv) > 1 and sys.argv[1] == 'develop':
+    #     # 'pip install -e' or 'python setup.py develop'
+    #     print('Installing in develop mode')
+    #     version = 'dev'
+    # elif VERSION.endswith('.dev'):  # development distribution
+    #     if is_dirty is None:
+    #         version = version_from_pkginfo() or VERSION
+    #     else:
+    #         print('Attempting to get commit SHA1 from git...')
+    #         git_sha1 = check_output(['git', 'rev-parse', '--short', 'HEAD'])
+    #         version = '{}+{}'.format(VERSION, git_sha1.strip().decode('ascii'))
+    #         if is_dirty:
+    #             version += '.dirty{}'.format(date.today().strftime('%Y%m%d'))
+    # else:  # release distribution
+    #     if is_dirty is None:
+    #         assert version_from_pkginfo() in (VERSION, None)
+    #     else:
+    #         assert not is_dirty
+    #     version = VERSION
+    # return version
 
 
 def version_from_pkginfo():
@@ -98,7 +99,7 @@ class BuildPyCommand(build_py):
 
 setup(
     cmdclass={'build_py': BuildPyCommand},
-    name='rinohtype',
+    name='rinohtype-reloaded',
     version=get_version(),
     packages=find_packages('src'),
     package_dir={'': 'src'},
